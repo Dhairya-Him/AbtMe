@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dhairya Yadav</title>
+  <style>
+    /* Fonts & Base */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+    body { background: linear-gradient(135deg,#4f46e5,#06b6d4); color:white; overflow-x:hidden; transition:0.3s; }
+    
+    /* Dark Mode */
+    body.dark { background: #111827; color: #facc15; }
+
+    /* Navbar */
+    nav { position: sticky; top:0; background: rgba(0,0,0,0.4); display:flex; justify-content:center; gap:2rem; padding:1rem; z-index:100; backdrop-filter: blur(10px); }
+    nav a { color:white; font-weight:bold; text-decoration:none; font-size:1.1rem; transition:0.3s; cursor:pointer; }
+    nav a:hover { color:#facc15; }
+
+    /* Header */
+    header { text-align:center; padding:4rem 1rem 2rem; animation: fadeDown 1.5s ease; cursor:pointer; }
+    header h1 { font-size:3rem; font-weight:700; text-shadow:2px 2px 10px rgba(0,0,0,0.3); }
+    header p { font-size:1.2rem; margin-top:0.5rem; }
+
+    /* Sections */
+    section { max-width:900px; margin:auto; padding:2rem 1rem; animation: fadeUp 1.5s ease; }
+    .card { background: rgba(255,255,255,0.1); padding:2rem; border-radius:16px; box-shadow:0 8px 20px rgba(0,0,0,0.2); margin-bottom:2rem; transition: transform 0.3s ease, background 0.3s ease; }
+    .card:hover { transform: scale(1.05); background: rgba(255,255,255,0.2); }
+    h2 { font-size:2rem; margin-bottom:1rem; color:#facc15; }
+
+    /* Skills/Buttons */
+    .skills { display:flex; flex-wrap:wrap; gap:1rem; margin-top:1rem; }
+    .skill-btn { background:#facc15; color:#111827; padding:0.8rem 1.2rem; border-radius:30px; font-weight:bold; cursor:pointer; border:none; transition: all 0.3s ease; }
+    .skill-btn:hover { background:#f472b6; color:white; transform: translateY(-5px); box-shadow:0 8px 15px rgba(0,0,0,0.3); }
+
+    /* Contact */
+    .contact-info p { margin:0.5rem 0; font-size:1.1rem; }
+    .contact-info span { font-weight:bold; color:#f472b6; }
+
+    /* Donate Section */
+    .donate-btn { background:#22c55e; color:white; padding:1rem 2rem; border:none; border-radius:12px; font-size:1.2rem; font-weight:bold; cursor:pointer; transition:0.3s; margin-top:1rem; }
+    .donate-btn:hover { background:#16a34a; transform:scale(1.05); box-shadow:0 8px 15px rgba(0,0,0,0.3); }
+
+    /* Guestbook */
+    #guestbook-input { padding:0.8rem; border-radius:12px; border:none; width:70%; margin-right:0.5rem; }
+    #guestbook-btn { padding:0.8rem 1.2rem; border:none; border-radius:12px; background:#facc15; font-weight:bold; cursor:pointer; transition:0.3s; }
+    #guestbook-btn:hover { background:#f472b6; color:white; }
+
+    /* Footer */
+    footer { text-align:center; padding:1.5rem; background: rgba(0,0,0,0.3); font-size:0.9rem; margin-top:2rem; }
+
+    /* Animations */
+    @keyframes fadeDown { from { opacity:0; transform: translateY(-50px); } to { opacity:1; transform: translateY(0); } }
+    @keyframes fadeUp { from { opacity:0; transform: translateY(50px); } to { opacity:1; transform: translateY(0); } }
+
+    /* Mini-games */
+    .mini-game { background:#f472b6; padding:1rem; border-radius:12px; margin:1rem 0; cursor:pointer; text-align:center; font-weight:bold; transition:0.3s; }
+    .mini-game:hover { transform:scale(1.05); background:#facc15; color:#111827; }
+
+    /* Admin Panel */
+    #admin-login, #admin-panel { max-width:900px; margin:auto; padding:2rem; display:none; }
+    #admin-panel .card { background:rgba(0,0,0,0.6); }
+    input, textarea { width:100%; padding:0.5rem; margin:0.3rem 0; border-radius:8px; border:none; }
+    .btn { background:#7c3aed; color:white; padding:0.5rem 1rem; border:none; border-radius:8px; cursor:pointer; }
+    .btn:hover { background:#5b21b6; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <a href="#about">About Me</a>
+    <a href="#skills">Skills</a>
+    <a href="#read">Read</a>
+    <a href="#mini-games">Mini Games</a>
+    <a href="#guestbook">Guestbook</a>
+    <a href="#donate">Donate</a>
+    <a onclick="toggleTheme()">🌓 Theme</a>
+  </nav>
+
+  <!-- Header -->
+  <header onclick="easterEgg()">
+    <h1>👋 Hi, I’m Dhairya Yadav</h1>
+    <p>5th Grader | Football Lover | Roblox Player</p>
+  </header>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="card">
+      <h2>About Me</h2>
+      <p id="about-text">I am Dhairya Yadav! Thank you for reading about me. I am in 5th grade, and I love playing football and Roblox!</p>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <div class="card">
+      <h2>My Skills & Fun Stuff</h2>
+      <div id="skills-list" class="skills"></div>
+    </div>
+  </section>
+
+  <!-- Read Section -->
+  <section id="read">
+    <div class="card">
+      <h2>Read</h2>
+      <div id="fun-facts"></div>
+    </div>
+  </section>
+
+  <!-- Mini Games Section -->
+  <section id="mini-games">
+    <div class="card">
+      <h2>Mini Games 🎮</h2>
+      <div id="games-container"></div>
+    </div>
+  </section>
+
+  <!-- Guestbook Section -->
+  <section id="guestbook">
+    <div class="card">
+      <h2>Guestbook ✍️</h2>
+      <input id="guestbook-input" placeholder="Write a message..." />
+      <button id="guestbook-btn" onclick="addGuestbookMessage()">Post</button>
+      <div id="guestbook-messages"></div>
+    </div>
+  </section>
+
+  <!-- Donate Section -->
+  <section id="donate">
+    <div class="card">
+      <h2>Support Me ❤️</h2>
+      <p>If you enjoy my website or just want to help me on my Roblox + football journey, feel free to donate!</p>
+      <button class="donate-btn">💸 Donate</button>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="card">
+      <h2>Contact Me</h2>
+      <div class="contact-info">
+        <p><span>Email:</span> Dhairyay1511@gmail.com</p>
+        <p><span>Roblox:</span> Newrivalsplayerop</p>
+        <p><span>Discord:</span> Dhairyay</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Admin Login -->
+  <section id="admin-login">
+    <div class="card">
+      <h2>🔑 Admin Login</h2>
+      <input id="admin-username" placeholder="Username" />
+      <input type="password" id="admin-password" placeholder="Password" />
+      <button class="btn" onclick="adminLogin()">Login</button>
+    </div>
+  </section>
+
+  <!-- Admin Panel -->
+  <section id="admin-panel">
+    <div class="card">
+      <h2>👑 Admin Panel</h2>
+      <button onclick="logout()" class="btn">Logout</button>
+      <h3>Edit About</h3>
+      <textarea id="edit-about"></textarea>
+      <button class="btn" onclick="saveAbout()">Save About</button>
+      <h3>Add Skill</h3>
+      <input id="skill-name" placeholder="Skill" />
+      <input id="skill-level" placeholder="Level %" />
+      <button class="btn" onclick="addSkill()">Add Skill</button>
+      <h3>Add Fun Fact</h3>
+      <input id="funfact-input" placeholder="New Fun Fact" />
+      <button class="btn" onclick="addFunFact()">Add Fact</button>
+      <h3>Add Mini Game</h3>
+      <input id="game-name" placeholder="Game Name" />
+      <input id="game-msg" placeholder="Click Message" />
+      <button class="btn" onclick="addMiniGame()">Add Game</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>🚀 Made with ❤️ by Dhairya Yadav | © 2025</p>
+  </footer>
+
+  <script>
+    // Data storage in localStorage (simple save)
+    const siteData = JSON.parse(localStorage.getItem('siteData') || '{}')
+
+    // Theme Switcher
+    function toggleTheme(){ document.body.classList.toggle('dark'); }
+
+    // Guestbook
+    function addGuestbookMessage(){
+      const input=document.getElementById('guestbook-input');
+      if(!input.value.trim()) return;
+      siteData.guestbook=siteData.guestbook||[];
+      siteData.guestbook.push(input.value);
+      localStorage.setItem('siteData',JSON.stringify(siteData));
+      render();
+      input.value='';
+    }
+
+    // Render site data
+    function render(){
+      document.getElementById('about-text').textContent=siteData.about||document.getElementById('about-text').textContent;
+      const skills=document.getElementById('skills-list');
+      skills.innerHTML='';
+      (siteData.skills||[]).forEach(s=>{
+        const btn=document.createElement('button');
+        btn.className='skill-btn';
+        btn.textContent=`${s.name} (${s.level}%)`;
+        skills.appendChild(btn);
+      });
+      const facts=document.getElementById('fun-facts');
+      facts.innerHTML='';
+      (siteData.facts||[]).forEach(f=>{
+        const p=document.createElement('p');
+        p.textContent='💡 '+f;
+        facts.appendChild(p);
+      });
+      const games=document.getElementById('games-container');
+      games.innerHTML='';
+      (siteData.games||[]).forEach(g=>{
+        const div=document.createElement('div');
+        div.className='mini-game';
+        div.textContent=g.name;
+        div.onclick=()=>alert(g.msg);
+        games.appendChild(div);
+      });
+      const msgs=document.getElementById('guestbook-messages');
+      msgs.innerHTML='';
+      (siteData.guestbook||[]).forEach(m=>{
+        const p=document.createElement('p');
+        p.textContent='💬 '+m;
+        msgs.appendChild(p);
+      });
+    }
+
+    // Admin login
+    function adminLogin(){
+      const user=document.getElementById('admin-username').value.trim();
+      const pass=document.getElementById('admin-password').value.trim();
+      if((user==='Dhairya' && pass==='Godisthebest') || (user==='Dakshith' && pass==='GamingIsGod1')){
+        document.getElementById('admin-login').style.display='none';
+        document.getElementById('admin-panel').style.display='block';
+        document.getElementById('edit-about').value=siteData.about||'';
+      } else alert('Invalid credentials');
+    }
+    function logout(){
+      document.getElementById('admin-login').style.display='block';
+      document.getElementById('admin-panel').style.display='none';
+    }
+
+    // Admin actions
+    function saveAbout(){
+      siteData.about=document.getElementById('edit-about').value;
+      localStorage.setItem('siteData',JSON.stringify(siteData));
+      render();
+    }
+    function addSkill(){
+      const name=document.getElementById('skill-name').value;
+      const level=document.getElementById('skill-level').value;
+      if(!name||!level) return;
+      siteData.skills=siteData.skills||[];
+      siteData.skills.push({name,level});
+      localStorage.setItem('siteData',JSON.stringify(siteData));
+      render();
+    }
+    function addFunFact(){
+      const fact=document.getElementById('funfact-input').value;
+      if(!fact) return;
+      siteData.facts=siteData.facts||[];
+      siteData.facts.push(fact);
+      localStorage.setItem('siteData',JSON.stringify(siteData));
+      render();
+    }
+    function addMiniGame(){
+      const name=document.getElementById('game-name').value;
+      const msg=document.getElementById('game-msg').value;
+      if(!name||!msg) return;
+      siteData.games=siteData.games||[];
+      siteData.games.push({name,msg});
+      localStorage.setItem('siteData',JSON.stringify(siteData));
+      render();
+    }
+
+    // Easter Egg to reveal login
+    function easterEgg(){
+      document.getElementById('admin-login').style.display='block';
+      window.scrollTo(0,document.body.scrollHeight);
+    }
+
+    render();
+  </script>
+</body>
+</html>
